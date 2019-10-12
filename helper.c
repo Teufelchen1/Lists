@@ -51,7 +51,7 @@ list *newList(int len){
 	return ls; 
 }
 
-void addElement(list *in,element *el){
+void addElement(list *in, element *el){
 	if(in->start != NULL){
 		element *last = findlastElm(in->start);
 		last->next = el;
@@ -63,13 +63,16 @@ void addElement(list *in,element *el){
 	in->length++;
 }
 
-void removeElement(element *el){
+void removeElement(list *in, element *el){
 	if(el->last && el->next){
 		el->last->next = el->next;
 		el->next->last = el->last;
 	} else if(el->last) {
 		el->last->next = NULL;
+	} else {
+		in->start = NULL;
 	}
+	in->length--;
 	free(el);
 }
 

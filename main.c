@@ -20,7 +20,7 @@ int main(int argc, char const *argv[])
 	addElement(eineliste, newElement("Third element of the list!"));
 	assert('S' == ((char *)eineliste->start->next->data)[0]); // second element
 	assert('T' == ((char *)findLastElm(eineliste)->data)[0]); // last element
-	removeElement(nextElement(eineliste->start)); // remove the second element
+	removeElement(eineliste, nextElement(eineliste->start)); // remove the second element
 	assert('T' == ((char *)eineliste->start->next->data)[0]); // "Third" is now the second element
 
 

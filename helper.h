@@ -18,5 +18,5 @@ element *findlastElm(element *el);
 element *nextElement(element *el);
 list *newList(int len);
 void addElement(list *in,element *el);
-void removeElement(element *el);
+void removeElement(list *in, element *el);
 void *knalloc(size_t size); 
