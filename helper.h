@@ -5,8 +5,6 @@ struct element{
 	element *last;
 	element *next;
 	void *data;
-	char ch;
-	//int data;
 };
 
 typedef struct{
@@ -15,8 +13,10 @@ typedef struct{
 }list;
 
 element *newElement(void *data);
-element *findlastElm(element *in);
+element *findLastElm(list *in);
+element *findlastElm(element *el);
+element *nextElement(element *el);
 list *newList(int len);
 void addElement(list *in,element *el);
+void removeElement(element *el);
 void *knalloc(size_t size); 
-int fillList(list *in, char *txt);

@@ -22,33 +22,67 @@ element *newElement(void *data){
 	return ptr;
 }
 
-element *findlastElm(element *in){
-	if(in->next != NULL){
-		return findlastElm(in->next);
+
+element *findLastElm(list *in){
+	if(in->start != NULL){
+		return findlastElm(in->start);
 	}
-	return in;
+	return NULL;
+}
+
+element *findlastElm(element *el){
+	if(el->next != NULL){
+		return findlastElm(el->next);
+	}
+	return el;
 }
 
 list *newList(int len){
 	list *ls = knalloc(sizeof(list));
-	ls->start = newElement(NULL);
-	ls->length = 1;
-	for (int i = 1; i < len; ++i){
-		addElement(ls, newElement(NULL));
+	ls->start = NULL;
+	ls->length = 0;
+	if(len){
+		ls->start = newElement(NULL);
+		ls->length = 1;
+		for (int i = 1; i < len; ++i){
+			addElement(ls, newElement(NULL));
+		}
 	}
 	return ls; 
 }
 
 void addElement(list *in,element *el){
 	if(in->start != NULL){
-		findlastElm(in->start)->next = el;
+		element *last = findlastElm(in->start);
+		last->next = el;
+		el->last = last;
 	} else {
-		printf("Your list is broken!\n");
-		return;
+		in->start = el;
+		el->last = NULL;
 	}
 	in->length++;
 }
 
+void removeElement(element *el){
+	if(el->last && el->next){
+		el->last->next = el->next;
+		el->next->last = el->last;
+	} else if(el->last) {
+		el->last->next = NULL;
+	}
+	free(el);
+}
+
+element *nextElement(element *el){
+	if(el != NULL && el->next != NULL){
+		return el->next;
+	} else {
+		return NULL;
+	}
+
+}
+
+/*
 int fillList(list *in, char *txt){
 	element *tmp;
 
@@ -65,3 +99,4 @@ int fillList(list *in, char *txt){
 	}
 	return 0;
 }
+*/
