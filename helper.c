@@ -16,9 +16,10 @@ void *knalloc(size_t size) {
 	return mem;
 }
 
-element *newElement(void *data){
+element *newElement(void *data, size_t size){
 	element *ptr = knalloc(sizeof(element));
 	ptr->data = data;
+	ptr->size = size;
 	return ptr;
 }
 
@@ -42,10 +43,10 @@ list *newList(int len){
 	ls->start = NULL;
 	ls->length = 0;
 	if(len){
-		ls->start = newElement(NULL);
+		ls->start = newElement(NULL, 0);
 		ls->length = 1;
 		for (int i = 1; i < len; ++i){
-			addElement(ls, newElement(NULL));
+			addElement(ls, newElement(NULL, 0));
 		}
 	}
 	return ls; 
@@ -73,7 +74,6 @@ void removeElement(list *in, element *el){
 		in->start = NULL;
 	}
 	in->length--;
-	free(el);
 }
 
 element *nextElement(element *el){

@@ -5,6 +5,7 @@ struct element{
 	element *last;
 	element *next;
 	void *data;
+	size_t size;
 };
 
 typedef struct{
@@ -12,7 +13,7 @@ typedef struct{
 	element *start;
 }list;
 
-element *newElement(void *data);
+element *newElement(void *data, size_t size);
 element *findLastElm(list *in);
 element *findlastElm(element *el);
 element *nextElement(element *el);
