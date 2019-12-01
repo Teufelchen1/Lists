@@ -77,8 +77,17 @@ void removeElement(list *in, element *el){
 }
 
 element *nextElement(element *el){
-	if(el != NULL && el->next != NULL){
-		return el->next;
+	if(el != NULL){
+		if(el->next != NULL){
+			return el->next;
+		}
+	} 
+	return NULL;
+}
+
+element *lastElement(element *el){
+	if(el != NULL && el->last != NULL){
+		return el->last;
 	} else {
 		return NULL;
 	}

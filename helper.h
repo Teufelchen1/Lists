@@ -1,4 +1,4 @@
-
+#pragma once
 typedef struct element element;
 
 struct element{
@@ -17,6 +17,7 @@ element *newElement(void *data, size_t size);
 element *findLastElm(list *in);
 element *findlastElm(element *el);
 element *nextElement(element *el);
+element *lastElement(element *el);
 list *newList(int len);
 void addElement(list *in,element *el);
 void removeElement(list *in, element *el);
